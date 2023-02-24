@@ -38,6 +38,11 @@ class Book(models.Model):
     # Genre class has already been defined so we can specify the object above.  
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
 
+    def display_genre(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+    
+    display_genre.short_description = 'Genre'
+
 
     def __str__(self):
         return self.title
